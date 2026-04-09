@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sentence Displayer</title>
+    <!-- Importing Poppins font -->
+    <link href="https://googleapis.com" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <h1>Sentence Displayer</h1>
+      <div id="sentence-container">
+        <div id="sentence">Paste your text below to start.</div>
+        <div id="counter">0 / 0</div>
+      </div>
+      <div class="controls">
+        <button id="prev">←</button>
+        <button id="new-text" class="hidden">New Text</button>
+        <!-- New button -->
+        <button id="next">→</button>
+      </div>
+
+      <div id="input-group">
+        <textarea id="input" placeholder="Paste your text here..."></textarea>
+        <div class="input-btns">
+          <button id="accept">Accept Text</button>
+          <button id="refresh">Refresh / Reset</button>
+        </div>
+      </div>
+
+      <div id="word-list-container">
+        <h3>Saved Words</h3>
+        <ul id="word-list"></ul>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
