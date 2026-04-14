@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sentence Displayer</title>
     <!-- Importing Poppins font -->
-    <link href="https://googleapis.com" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -25,14 +25,28 @@
       <div id="input-group">
         <textarea id="input" placeholder="Paste your text here..."></textarea>
         <div class="input-btns">
-          <button id="accept">Accept Text</button>
-          <button id="refresh">Refresh / Reset</button>
+          <button id="accept">Split into Sentences</button>
+          <button id="accept-paragraphs">Split into Paragraphs</button>
+          <button id="refresh" aria-label="Refresh / Reset">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+              <path d="M11 1.75V3h2.25a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1 0-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75ZM4.496 6.675l.66 6.6a.25.25 0 0 0 .249.225h5.19a.25.25 0 0 0 .249-.225l.66-6.6a.75.75 0 0 1 1.492.149l-.66 6.6A1.748 1.748 0 0 1 10.595 15h-5.19a1.748 1.748 0 0 1-1.741-1.575l-.66-6.6a.75.75 0 1 1 1.492-.149Z"/>
+            </svg>
+          </button>
         </div>
       </div>
 
       <div id="word-list-container">
         <h3>Saved Words</h3>
-        <ul id="word-list"></ul>
+        <table>
+          <thead>
+            <tr>
+              <th>Word</th>
+              <th>Context</th>
+              <th>Translation</th>
+            </tr>
+          </thead>
+          <tbody id="word-list"></tbody>
+        </table>
       </div>
     </div>
     <script src="script.js"></script>

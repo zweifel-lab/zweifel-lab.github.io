@@ -1,13 +1,40 @@
-/* Nord Theme Palette & Font */
+/* Nord palette mapped to Pico CSS variables */
+:root {
+  --pico-background-color: #2e3440;
+  --pico-color: #eceff4;
+  --pico-font-family: "Poppins", sans-serif;
+
+  --pico-primary: #88c0d0;
+  --pico-primary-hover: #5e81ac;
+  --pico-primary-focus: rgba(136, 192, 208, 0.25);
+  --pico-primary-inverse: #2e3440;
+
+  --pico-secondary: #4c566a;
+  --pico-secondary-hover: #5e81ac;
+  --pico-secondary-inverse: #eceff4;
+
+  --pico-form-element-background-color: #3b4252;
+  --pico-form-element-border-color: #4c566a;
+  --pico-form-element-color: #eceff4;
+  --pico-form-element-placeholder-color: #4c566a;
+  --pico-form-element-focus-color: #88c0d0;
+
+  --pico-border-color: #4c566a;
+  --pico-muted-color: #d8dee9;
+  --pico-muted-border-color: #4c566a;
+
+  --pico-card-background-color: #3b4252;
+  --pico-card-border-color: #4c566a;
+}
+
+/* Layout */
 body {
-  background-color: #2e3440; /* Nord0: Polar Night */
-  color: #eceff4; /* Nord6: Snow Storm */
-  font-family: "Poppins", sans-serif;
-  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  margin: 0;
+  padding: 1rem;
   text-align: center;
 }
 
@@ -15,17 +42,17 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 1.5rem;
   width: 90%;
   max-width: 600px;
 }
 
 h1 {
-  color: #88c0d0; /* Nord8: Frost Blue */
-  margin-bottom: 10px;
-  font-weight: 600;
+  color: var(--pico-primary);
+  margin-bottom: 0;
 }
 
+/* Sentence display */
 #sentence-container {
   min-height: 120px;
   display: flex;
@@ -36,130 +63,173 @@ h1 {
 #sentence {
   font-size: 1.5rem;
   line-height: 1.6;
-  margin-bottom: 10px;
+  margin-bottom: 0.5rem;
 }
 
 #counter {
-  color: #d8dee9; /* Nord4: Snow Storm (lighter) */
+  color: var(--pico-muted-color);
   font-size: 0.9rem;
 }
 
+/* Shared button shape */
+button {
+  border-radius: 999px !important;
+}
+
+/* Nav controls (prev / next / new-text) */
+.controls {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
 .controls button {
-  background-color: #4c566a; /* Nord3: Polar Night (brighter) */
-  color: #eceff4;
-  border: none;
-  padding: 10px 25px;
+  padding: 0.5rem 1.5rem;
   font-size: 1.5rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.2s;
+  background-color: #434c5e;
+  border-color: #434c5e;
+  color: #eceff4;
 }
 
 .controls button:hover {
-  background-color: #5e81ac; /* Nord10: Frost Blue (Dark) */
+  background-color: #4c566a;
+  border-color: #4c566a;
 }
 
-textarea {
-  width: 100%;
-  height: 100px;
-  background-color: #3b4252; /* Nord1 */
-  border: 2px solid #4c566a;
-  border-radius: 12px;
-  color: #eceff4;
-  padding: 15px;
-  font-family: inherit;
-  resize: none;
-  outline: none;
+#new-text {
+  background-color: #ebcb8b;
+  border-color: #ebcb8b;
+  color: #2e3440;
+  font-size: 1rem;
 }
 
-textarea::placeholder {
-  color: #4c566a;
+#new-text:hover {
+  background-color: #d9b96e;
+  border-color: #d9b96e;
 }
 
+/* Input area */
 #input-group {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.75rem;
 }
 
 .input-btns {
   display: flex;
-  gap: 10px;
+  gap: 0.75rem;
   justify-content: center;
+  flex-wrap: wrap;
+  align-items: stretch;
 }
 
-/* Style for the new buttons */
+/* Split buttons — Nord Frost blue */
 #accept,
-#refresh {
-  font-family: "Poppins", sans-serif;
-  padding: 10px 20px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
+#accept-paragraphs {
+  background-color: #5e81ac;
+  border-color: #5e81ac;
+  color: #eceff4;
   font-weight: 600;
 }
 
-#accept {
-  background-color: #a3be8c;
-  color: #2e3440;
-} /* Nord Green */
+#accept:hover,
+#accept-paragraphs:hover {
+  background-color: #4c6f99;
+  border-color: #4c6f99;
+}
+
+/* Trash button — Nord Aurora red, icon only */
 #refresh {
   background-color: #bf616a;
+  border-color: #bf616a;
   color: #eceff4;
-} /* Nord Red */
+  padding-left: 0.85rem;
+  padding-right: 0.85rem;
+  align-self: stretch;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
 
-/* This class will hide the input area */
+#refresh:hover {
+  background-color: #a8545c;
+  border-color: #a8545c;
+}
+
+/* Utility */
 .hidden {
   display: none !important;
 }
 
-#new-text {
-  background-color: #ebcb8b; /* Nord Yellow */
-  color: #2e3440;
-  font-size: 1rem;
-  padding: 10px 20px;
-  border-radius: 8px;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-}
-
+/* Word list */
 #word-list-container {
-  margin-top: 30px;
   width: 100%;
-  border-top: 1px solid #4c566a;
-  padding-top: 20px;
-}
-#word-list {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-}
-#word-list li {
-  background: #4c566a;
-  padding: 5px 15px;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  cursor: pointer;
+  border-top: 1px solid var(--pico-border-color);
+  padding-top: 1.25rem;
 }
 
-/* Styles each word as a clickable element */
+#word-list-container table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+#word-list-container th {
+  color: var(--pico-muted-color);
+  font-weight: 600;
+  padding: 0.4rem 0.75rem;
+  border-bottom: 1px solid var(--pico-border-color);
+}
+
+#word-list-container td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--pico-muted-border-color);
+  vertical-align: middle;
+}
+
+#word-list-container td input {
+  width: 100%;
+  margin: 0;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.85rem;
+}
+
+.word-cell {
+  cursor: pointer;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--pico-primary);
+  transition: color 0.2s;
+}
+
+.word-cell:hover {
+  color: #bf616a;
+  text-decoration: line-through;
+}
+
+/* Clickable words in sentence */
 .clickable-word {
   cursor: pointer;
-  transition: color 0.2s;
   display: inline-block;
   margin: 0 2px;
-}
-.clickable-word:hover {
-  color: #88c0d0;
-  text-decoration: underline;
+  transition: color 0.2s;
 }
 
-.underlined {
+.clickable-word:hover {
+  color: var(--pico-primary);
+}
+
+.underlined-group {
+  color: var(--pico-primary);
+}
+
+.underlined-group .clickable-word:hover {
+  opacity: 0.7;
+}
+
+#word-list-container td strong {
   text-decoration: underline;
-  color: #88c0d0; /* Optional: change color to Nord Frost Blue when selected */
+  text-decoration-color: var(--pico-primary);
 }
