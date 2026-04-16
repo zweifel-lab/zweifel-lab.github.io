@@ -3,26 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sentence Displayer</title>
-    <!-- Importing Poppins font -->
+    <title>One Sentence Reader</title>
+    <meta name="description" content="Read and memorize text one sentence at a time." />
+    <meta property="og:title" content="One Sentence Reader" />
+    <meta property="og:description" content="Read and memorize text one sentence at a time." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div id="app">
-      <h1>Sentence Displayer</h1>
+      <h1><a href="/">One Sentence Reader</a></h1>
       <div id="sentence-container">
         <div id="sentence">Paste your text below to start.</div>
         <div id="counter">0 / 0</div>
       </div>
+      <div id="progress-bar-wrap">
+        <div id="progress-bar"></div>
+      </div>
       <div class="controls">
         <button id="prev">←</button>
         <button id="new-text" class="hidden">New Text</button>
-        <!-- New button -->
         <button id="next">→</button>
       </div>
 
       <div id="input-group">
+        <div class="input-settings">
+          <select id="lang-select">
+            <option value="en">🇬🇧 English</option>
+            <option value="ru">🇷🇺 Russian</option>
+            <option value="de">🇩🇪 German</option>
+            <option value="fr">🇫🇷 French</option>
+            <option value="es">🇪🇸 Spanish</option>
+            <option value="it">🇮🇹 Italian</option>
+          </select>
+          <div class="font-toggle">
+            <button class="font-btn active" data-font="sans" title="Sans-serif · Poppins">Sans</button>
+            <button class="font-btn" data-font="serif" title="Serif · EB Garamond">Serif</button>
+            <button class="font-btn" data-font="mono" title="Monospace · JetBrains Mono">Mono</button>
+          </div>
+        </div>
         <textarea id="input" placeholder="Paste your text here..."></textarea>
         <div class="input-btns">
           <button id="accept">Split into Sentences</button>
@@ -36,7 +58,13 @@
       </div>
 
       <div id="word-list-container">
-        <h3>Saved Words</h3>
+        <div class="word-list-header">
+          <h3>Saved Words <span id="word-count"></span></h3>
+          <div class="export-btns">
+            <button id="export-anki">Export / Anki</button>
+            <button id="copy-words">Copy</button>
+          </div>
+        </div>
         <table>
           <thead>
             <tr>
@@ -49,6 +77,48 @@
         </table>
       </div>
     </div>
+
+    <section id="about">
+      <h2>About the project</h2>
+      <p class="about-desc">One Sentence Reader moves you through any text one sentence at a time. Spot an unknown word — click it. It lands in your vocabulary list with full context. Add a translation, then export to Anki or any text app.</p>
+
+      <h3>Frequently Asked Questions</h3>
+      <div class="faq">
+        <details>
+          <summary>Why did we build this?</summary>
+          <p>Reading a foreign text end-to-end is exhausting when every other sentence holds a word you don't know. Stopping to open a dictionary breaks the flow — and you forget why you were reading. This tool lets you keep moving and harvest vocabulary naturally, in context, without switching apps.</p>
+        </details>
+        <details>
+          <summary>Why just one sentence?</summary>
+          <p>One sentence is the minimal unit of meaning. A word alone tells you nothing; a full paragraph is noise. One sentence gives you exactly the context you need — who said what, in what tense, in what register. That's enough to understand the word and remember it.</p>
+        </details>
+        <details>
+          <summary>How can I memorize words more effectively?</summary>
+          <p>Don't paste translations — type them. Retrieval practice (forcing your brain to produce a word) is far more effective than reading a list. Save words during your session. Return to the list that same evening. Review again after two days, then a week.</p>
+        </details>
+        <details>
+          <summary>How does the reader work?</summary>
+          <p>Paste any text into the input area. Choose <em>Split into Sentences</em> for prose or <em>Split into Paragraphs</em> for poetry and dialogue. Navigate with the ← → buttons or keyboard arrow keys. Click any word in the sentence — or click consecutive words to group a phrase — to add it to your vocabulary list. Type a translation in the table.</p>
+        </details>
+        <details>
+          <summary>How do I export my saved words?</summary>
+          <p>Click <strong>Copy</strong> to copy your list to the clipboard in Markdown: each line reads <code>**word** – context – translation</code>. Paste into Notion, Obsidian, or Anki's note editor. For a direct Anki import, click <strong>Export / Anki</strong> to download a <code>.txt</code> file, then use File → Import in Anki with <em>Plain text</em> selected.</p>
+        </details>
+        <details>
+          <summary>Can I save a phrase instead of a single word?</summary>
+          <p>Yes. Click words one by one — consecutive selections are automatically grouped into a phrase. Click a word again to deselect it from the group. The whole phrase appears as one entry in the vocabulary list.</p>
+        </details>
+        <details>
+          <summary>Does it work with any language?</summary>
+          <p>Any language that uses standard punctuation to end sentences will work. The language selector fine-tunes how sentences are split — for instance, it prevents common abbreviations in that language from being mistaken for sentence endings. For unsupported scripts or punctuation styles, splitting by paragraph is a safe fallback.</p>
+        </details>
+        <details>
+          <summary>Is my data sent anywhere?</summary>
+          <p>No. Everything runs in your browser. Your text, saved words, and translations never leave your device. Refreshing the page clears everything — export before you close.</p>
+        </details>
+      </div>
+    </section>
+
     <script src="script.js"></script>
   </body>
 </html>

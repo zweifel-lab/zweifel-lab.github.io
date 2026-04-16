@@ -27,10 +27,18 @@
   --pico-card-border-color: #4c566a;
 }
 
+/* Font variants — sentence display only */
+body[data-font="serif"] #sentence {
+  font-family: 'EB Garamond', Georgia, serif;
+}
+body[data-font="mono"] #sentence {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+}
+
 /* Layout */
 body {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   min-height: 100vh;
   margin: 0;
@@ -45,11 +53,22 @@ body {
   gap: 1.5rem;
   width: 90%;
   max-width: 600px;
+  padding-top: 2rem;
 }
 
 h1 {
   color: var(--pico-primary);
   margin-bottom: 0;
+}
+
+h1 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1 a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
 }
 
 /* Sentence display */
@@ -61,9 +80,10 @@ h1 {
 }
 
 #sentence {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   line-height: 1.6;
   margin-bottom: 0.5rem;
+  text-align: left;
 }
 
 #counter {
@@ -116,11 +136,65 @@ button {
   gap: 0.75rem;
 }
 
+/* Settings row: lang select + font toggle */
+.input-settings {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+#lang-select {
+  flex: 1;
+  font-size: 0.95rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background-color: #3b4252;
+  border: 1px solid #4c566a;
+  color: #eceff4;
+  cursor: pointer;
+  margin: 0;
+}
+
+#lang-select:focus {
+  outline: none;
+  border-color: var(--pico-primary);
+}
+
+/* Font toggle */
+.font-toggle {
+  display: flex;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.font-btn {
+  font-size: 0.8rem;
+  padding: 0.3rem 0.7rem;
+  background-color: #3b4252;
+  border: 1px solid #4c566a;
+  color: #d8dee9;
+  cursor: pointer;
+}
+
+.font-btn:hover {
+  background-color: #434c5e;
+  border-color: #4c566a;
+}
+
+.font-btn.active {
+  background-color: var(--pico-primary) !important;
+  border-color: var(--pico-primary) !important;
+  color: #2e3440 !important;
+}
+
+.font-btn[data-font="sans"] { font-family: 'Poppins', sans-serif; }
+.font-btn[data-font="serif"] { font-family: 'EB Garamond', Georgia, serif; font-size: 1rem; }
+.font-btn[data-font="mono"] { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; }
+
 .input-btns {
   display: flex;
   gap: 0.75rem;
   justify-content: center;
-  flex-wrap: wrap;
   align-items: stretch;
 }
 
@@ -162,11 +236,72 @@ button {
   display: none !important;
 }
 
+/* Progress bar */
+#progress-bar-wrap {
+  width: 100%;
+  height: 4px;
+  background-color: #3b4252;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background-color: var(--pico-primary);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
 /* Word list */
 #word-list-container {
   width: 100%;
   border-top: 1px solid var(--pico-border-color);
   padding-top: 1.25rem;
+}
+
+.word-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.word-list-header h3 {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#word-count {
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: var(--pico-primary);
+  color: #2e3440;
+  border-radius: 999px;
+  padding: 0.1rem 0.55rem;
+  line-height: 1.6;
+}
+
+.export-btns {
+  display: flex;
+  gap: 0.5rem;
+}
+
+#export-anki,
+#copy-words {
+  font-size: 0.8rem;
+  padding: 0.3rem 0.85rem;
+  background-color: #434c5e;
+  border-color: #434c5e;
+  color: #eceff4;
+}
+
+#export-anki:hover,
+#copy-words:hover {
+  background-color: #4c566a;
+  border-color: #4c566a;
 }
 
 #word-list-container table {
@@ -232,4 +367,65 @@ button {
 #word-list-container td strong {
   text-decoration: underline;
   text-decoration-color: var(--pico-primary);
+}
+
+/* ── About section ─────────────────────────────────────────────────────────── */
+#about {
+  width: 90%;
+  max-width: 600px;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  text-align: left;
+  border-top: 1px solid var(--pico-border-color);
+  padding-top: 2rem;
+}
+
+.about-desc {
+  color: var(--pico-muted-color);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+/* FAQ accordion */
+.faq details {
+  border-bottom: 1px solid var(--pico-border-color);
+}
+
+.faq details:first-child {
+  border-top: 1px solid var(--pico-border-color);
+}
+
+.faq summary {
+  padding: 0.85rem 0;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  color: var(--pico-color);
+  user-select: none;
+  text-decoration: none;
+}
+
+.faq summary:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.faq details p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--pico-muted-color);
+  margin: 0 0 1rem 0;
+  padding-right: 1rem;
+}
+
+.faq details p code {
+  background-color: #3b4252;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.faq details p strong {
+  color: var(--pico-color);
 }
